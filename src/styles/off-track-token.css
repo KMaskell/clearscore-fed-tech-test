@@ -1,0 +1,9 @@
+.off-track-token {
+    display: inline-block;
+    border-radius: 4px;
+    margin: 8px;
+    padding: 4px;
+    background-color: #ddf9ea;
+    color: #15693b;
+    font-size: 12px;
+}
