@@ -1,9 +1,9 @@
 .med-impact-pill {
     display: inline-block;
     border-radius: 4px;
-    margin: 8px;
     padding: 4px 8px 4px 8px;
     background-color: #eeeff1;
     color: #253648;
+    text-align: center;
     font-size: 12px;
 }
