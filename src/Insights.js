@@ -8,14 +8,28 @@ import language from './language';
 import data from './mock-report.json';
 
 const Insights = () => {
-    // console.log('this is ', data.personal.publicInfo.courtAndInsolvencies);
-    console.log('JSON data', data);
+    // console.log('JSON data', data);
+    const accounts = Object.values(data.accounts).map((accountCategoryKey) => {
+        return accountCategoryKey;
+    });
+
+    const creditUtilisationPill = Object.values(accounts).map((account) => {
+        if (account.accountCategory === 'credit_cards') {
+            const balance = account.overview.balance.amount;
+            const limit = account.overview.limit.amount;
+            if (balance > limit / 2) {
+                return <OffTrackToken />;
+            } else {
+                return <OnTrackToken />;
+            }
+        }
+    });
 
     const insights = Object.keys(language).map((insightKey) => {
         const insightSegment = language[insightKey];
         return (
             <ol key={insightKey} className="insight-card">
-                <li>
+                <li key={insightKey}>
                     {insightSegment.Header === 'Public information' ? (
                         data.personal.publicInfo.courtAndInsolvencies ? (
                             <OffTrackToken />
@@ -23,6 +37,8 @@ const Insights = () => {
                             <OnTrackToken />
                         )
                     ) : null}
+                    {insightSegment.Header === 'Credit utilisation' &&
+                        creditUtilisationPill}
                     <h6>{insightSegment.Header}</h6>
                     <p>{insightSegment.Body}</p>
                     {insightSegment.Impact === 'High Impact' ? (
@@ -38,13 +54,6 @@ const Insights = () => {
         <div className="wrapper">
             <h1 className="heading">Insights</h1>
             <div className="cardContainer">{insights}</div>
-            {/* <div className="insight-card">
-                {data.personal.publicInfo.courtAndInsolvencies ? (
-                    <OffTrackToken />
-                ) : (
-                    <OnTrackToken />
-                )}
-            </div> */}
         </div>
     );
 };
