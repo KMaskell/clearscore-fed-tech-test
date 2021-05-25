@@ -40,35 +40,43 @@ const Insights = () => {
     return (
         <div className="wrapper">
             <h1 className="heading">Insights</h1>
-            {insightSegment.map((insight) => {
-                return (
-                    <ol key={insight.Header} className="insight-card">
-                        <li key={insight.Header}>
-                            {insight.Header === 'Public information' ? (
-                                data.personal.publicInfo
-                                    .courtAndInsolvencies ? (
-                                    <OffTrackToken />
-                                ) : (
-                                    <OnTrackToken />
-                                )
-                            ) : null}
-                            {insight.Header === 'Credit utilisation' &&
-                                creditUtilisationPill}
-                            {insight.Header === 'Electoral roll' &&
-                                electoralRollPill}
-                            <h4 className="insight-heading">
-                                {insight.Header}
-                            </h4>
-                            <p>{insight.Body}</p>
-                            {insight.Impact === 'High Impact' ? (
-                                <HighImpactPill />
-                            ) : (
-                                <MedImpactPill />
-                            )}
-                        </li>
-                    </ol>
-                );
-            })}
+            <div className="cardContainer">
+                {insightSegment.map((insight) => {
+                    return (
+                        <ol className="insight-card">
+                            <li className="insight-item-container">
+                                <div>
+                                    {insight.Header === 'Public information' ? (
+                                        data.personal.publicInfo
+                                            .courtAndInsolvencies ? (
+                                            <OffTrackToken />
+                                        ) : (
+                                            <OnTrackToken />
+                                        )
+                                    ) : null}
+                                    {insight.Header === 'Credit utilisation' &&
+                                        creditUtilisationPill}
+                                    {insight.Header === 'Electoral roll' &&
+                                        electoralRollPill}
+                                    <h4 className="insight-header">
+                                        {insight.Header}
+                                    </h4>
+                                    <p className="insight-text">
+                                        {insight.Body}
+                                    </p>
+                                </div>
+                                <div className="impact-pill">
+                                    {insight.Impact === 'High Impact' ? (
+                                        <HighImpactPill />
+                                    ) : (
+                                        <MedImpactPill />
+                                    )}
+                                </div>
+                            </li>
+                        </ol>
+                    );
+                })}
+            </div>
         </div>
     );
 };

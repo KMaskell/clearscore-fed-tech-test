@@ -1,8 +1,8 @@
 import React from 'react';
-import '../styles/high-impact-pill.css';
+import '../styles/impact-pill.css';
 
 const HighImpactPill = () => {
-    return <div className="high-impact-pill">HIGH IMPACT</div>;
+    return <div className="impact-pill">HIGH IMPACT</div>;
 };
 
 export default HighImpactPill;
